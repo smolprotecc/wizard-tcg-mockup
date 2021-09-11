@@ -283,13 +283,16 @@ function unhighlight(e) { dropArea.classList.remove('highlight') }
 function handleFiles(files) { [...files].forEach(processFile) }
 dropArea.addEventListener('drop', function(e) { handleFiles(e.dataTransfer.files) }, false)
 function processFile(file) {
-  $('#drop-content').css('background-image', 'url(' + file.name + ')')
-  let reader = new FileReader()
-  reader.readAsArrayBuffer(file)
-  reader.onload = function() {
-    // console.log(reader.result)
-    let uint8 = new Uint8Array(reader.result);
-    // console.log('Initial object is ' + commaThis(uint8.length) + ' bytes.')
+  let fileTypes = ['png','jpg','jpeg','gif','bmp']
+  let ft = file.type.replace('image/','')
+  if (fileTypes.indexOf(ft) != -1) {
+    let r = new FileReader()
+    let i = new Image()
+    r.readAsDataURL(file)
+    r.onload = function(_file) {
+      console.log(_file.target.result)
+      $('#drop-content').css('background-image', 'url(' + _file.target.result + ')')
+    }
   }
 }
   
