@@ -1,0 +1,296 @@
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@200&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Overlock&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Merienda&display=swap');
+  
+  body {
+    background: rgba( 1, 1, 1, 0.88 );
+  }
+  #drop-area {
+    position: absolute;
+    left    : 50%;
+    top     : 50%;
+    height  : 590px;
+    width   : 410px;
+    border  : 15px solid rgba(1,1,1,1);
+    border-radius: 15px;
+    transform: translate( -50%, -50% );
+  }
+  #drop-content {
+    position: absolute;
+    left    : 0%;
+    top     : 0%;
+    width   : 100%;
+    height  : 100%;
+    border-radius: 8px;
+    background: rgba( 255, 255, 255, 1);
+    background-image: url('raster.png');
+    background-size: cover;
+    
+    background-image: url('512.jpeg');
+  }
+  #header {
+    position: absolute;
+    top     : 11px;
+    left    : 5.5%;
+    width   : calc(100% - 11%);
+    height  : 43px;
+    background: rgba(255, 255, 255, 0.09);
+    border-radius: 4px;
+    backdrop-filter: blur(7px);
+  }
+  #sub-header-line-pre {
+    position: absolute; 
+    left    : 0%;
+    top     : 50%;
+    transform: translate( 5%, -1px );
+    width   : calc(50% - 15%);
+    height  : 1px;
+    background: rgba( 255, 255, 255, 0.11);
+  }
+  #sub-header-line-post {
+    position: absolute; 
+    left    : 50%;
+    top     : 50%;
+    transform: translate( 35%, -1px );
+    width   : calc(50% - 15%);
+    height  : 1px;
+    background: rgba( 255, 255, 255, 0.11);
+  }
+  #label {
+    position: absolute;
+    left    : 5.5%;
+    top     : 52%;
+    width   : calc(100% - 11%);
+    height  : 39px;
+    backdrop-filter: blur(13px);
+    text-align: center;
+    line-height: 22px;
+    color: rgba(1,1,1,0.83);
+    font-family: 'Special Elite','Baloo 2';
+    background-image: url('raster.png');
+    font-size : 13pt;
+  }
+#text {
+  position   : absolute;
+  left       : 5.5%;
+  top        : 58%;
+  width      : calc(100% - 11%);
+  height     : calc(100% - 58% - 55px);
+  background : rgba( 1, 1, 1, 0.34 );
+  border     : 1px solid rgba(255,255,255,0.11);
+  border-radius  : 2px;
+  backdrop-filter: blur(7px);
+}
+#text textarea {
+  border     : none;
+  margin     : none;
+  resize     : none;
+  outline    : none;
+  position   : absolute;
+  width      : 100%;
+  height     : 33%;
+  top        : 0%;
+  left       : 0%;
+  background : rgba( 1, 1, 1, 0.01 );
+  padding    : 0.8em;
+  color      : rgba( 201, 201, 201, 0.88);
+  font-family: 'Overlock', 'Baloo 2';
+  font-size  : 12pt;
+}
+#text .loreText {
+  position   : absolute;
+  width      : 100%;
+  height     : 44%;
+  top        : calc(31%);
+  left       : 0%;
+  background : rgba( 1, 1, 1, 0.01 );
+  border     : none;
+  margin     : none;
+  padding    : 0.8em;
+  outline    : none;
+  color      : rgba( 201, 201, 201, 0.72);
+  font-family: 'Merienda','Caveat';
+  font-size  : 9pt;
+}
+#health-pool, #combat-score {
+  position   : absolute;
+  top        : 7px;
+  left       : 14px;
+  transform  : translate( 0%, -28% );	
+  color      : rgba(177,177,177,0.87);
+  font-family: 'Arima Madurai','Special Elite','Merriweather';
+}
+#health, #combat-icon {
+  position   : absolute;
+  top        : 4px;
+  left       : 28px;
+  width      : 11px;
+  height     : 14px;
+  background-image: url('blooddrop-icon.png');
+  background-size: cover;
+  opacity    : 0.88;
+}
+#combat-score {
+  top        : 29px;
+}
+#combat-icon {
+  background-image: url('sword-icon.png');
+  top        : 24px;
+  left       : 30px;
+}
+#symbol {
+  position   : absolute;
+  top        : 0%;
+  right      : 29px;
+  width      : 16px;
+  height     : 21px;
+  background-image: url('water-icon.png');
+  background-size: cover;
+  opacity    : 0.73;
+}
+#symbol-value {
+  position   : absolute;
+  top        : 7px;
+  right      : 0px;
+  width      : 3ch;
+  transform  : translate( 0%, -28% );
+  font-size  : 10pt;
+  color      : rgba(201,201,201,0.77);
+  font-family: 'Arima Madurai','Special Elite','Merriweather';
+}
+#footer {
+  position   : absolute;
+  bottom     : 2px;
+  left       : 5.5%;
+  font-size  : 9pt;
+  color      : rgba(201,201,201,0.37);
+}
+input {
+  background : rgba( 0, 0, 0, 0);
+  border     : none;
+  margin     : none;
+  padding    : none;
+  outline    : none;
+  width      : 4ch;
+}
+textarea {
+  background : rgba( 0, 0, 0, 0);
+  border     : none;
+  margin     : none;
+  padding    : none;
+  outline    : none;
+}
+textarea::-webkit-scrollbar {
+  display    : none;
+}
+textarea {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width   : none;     /* Firefox */
+}
+#header-text {
+  position   : absolute;
+  left       : 50%;
+  top        : 50%;
+  transform  : translate( -50%, -50% );
+  height     : 43px;
+  line-height: 43px;
+  font-size  : 17pt;
+  text-align : center;
+  font-family: 'Arima Madurai','Special Elite','Merriweather';
+  color      : rgba( 201, 201, 201, 0.65 );
+  /* Behaviours */
+  resize     : none;
+}
+
+#artist {
+  width      : 14ch;
+  font-size  : 9pt;
+  font-family: 'Overlock';
+  color      : rgba(201,201,201,0.37);
+}
+#copyright {
+  position   : absolute;
+  bottom     : 2px;
+  right      : 4px;
+  text-align : right;
+  font-size  : 9pt;
+  font-family: 'Overlock';
+  color      : rgba(201,201,201,0.37);
+}
+</style>
+
+<div id="drop-area">
+  <div id="drop-content">
+  <div id="header">
+    <input id="health-pool"></input><div id="health"></div>
+    <input id="combat-score"></input><div id="combat-icon"></div>
+    <div id="sub-header-line-pre"></div><textarea id="header-text"></textarea><div id="sub-header-line-post"></div><div id="symbol"></div><input id="symbol-value"></input></div>
+  <input id="label" spellcheck="false"></input>
+  <div id="text">
+    <textarea class="cardAction" spellcheck="false"></textarea>
+    <textarea class="loreText" spellcheck="false"></textarea>
+  </div>
+  <div id="footer"><input id="artist"></input></div>
+  <div id="copyright">© 2021 Forgotten Runes Wizard's Cult</div>
+  </div>
+</div>
+<script>
+/* Default values: */
+let defaults = {
+  cardTitle  : `Purity`,
+  cardName   : `Witch Florah of the Mountain`,
+  cardAction : `When Witch Florah enters the field, restore 15 points to your health pool.`,
+  loreText   : `"Like the snowmelt, Witch Florah's innocence would renew the battle-worn and weary."\n- Forgotten Runes Wizard's Cult #512`,
+  artist     : `EN Ozzz`,
+  
+  healthPool : `8`,
+  combatScore: `3`,
+  symbolValue: `7`,
+}
+
+/* On start: */
+$(document).ready(function() {
+  $('#header-text').text(defaults.cardTitle)
+  $('#label').attr('value', defaults.cardName)
+  $('#text .cardAction').text(defaults.cardAction)
+  $('#text .loreText').text(defaults.loreText)
+  $('#artist').attr('value', defaults.artist)
+  
+  $('#health-pool' ).attr('value', defaults.healthPool )
+  $('#combat-score').attr('value', defaults.combatScore)
+  $('#symbol-value').attr('value', defaults.symbolValue)
+})
+  
+// Drag & Drop background picture, https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/
+let dropArea = document.getElementById('drop-area')
+;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => { dropArea.addEventListener(eventName, preventDefaults, false) })
+;['dragenter', 'dragover'].forEach(eventName => { dropArea.addEventListener(eventName, highlight, false) })
+;['dragleave', 'drop'].forEach(eventName => { dropArea.addEventListener(eventName, unhighlight, false) })
+function preventDefaults(e) { e.preventDefault(); e.stopPropagation() }
+function highlight(e) { dropArea.classList.add('highlight') }
+function unhighlight(e) { dropArea.classList.remove('highlight') }
+function handleFiles(files) { [...files].forEach(processFile) }
+dropArea.addEventListener('drop', function(e) { handleFiles(e.dataTransfer.files) }, false)
+function processFile(file) {
+  $('#drop-content').css('background-image', 'url(' + file.name + ')')
+  let reader = new FileReader()
+  reader.readAsArrayBuffer(file)
+  reader.onload = function() {
+    // console.log(reader.result)
+    let uint8 = new Uint8Array(reader.result);
+    // console.log('Initial object is ' + commaThis(uint8.length) + ' bytes.')
+  }
+}
+  
+</script>
