@@ -16,20 +16,15 @@
   body {
     background: rgba( 1, 1, 1, 0.88 );
   }
-  #content {
+  #drop-area {
     position: absolute;
     left    : 50%;
     top     : 50%;
-    transform: translate( -50%, -50% );
-  }
-  #drop-area {
-    position: absolute;
-    left    : 0%;
-    top     : 0%;
     height  : 590px;
     width   : 410px;
     border  : 15px solid rgba(1,1,1,1);
     border-radius: 15px;
+    transform: translate( -50%, -50% );
   }
   #drop-content {
     position: absolute;
@@ -235,7 +230,6 @@ textarea {
 }
 </style>
 
-<div id="content">
 <div id="drop-area">
   <div id="drop-content">
   <div id="header">
@@ -250,7 +244,6 @@ textarea {
   <div id="footer"><input id="artist"></input></div>
   <div id="copyright">© 2021 Forgotten Runes Wizard's Cult</div>
   </div>
-</div>
 </div>
 
 <script>
@@ -285,7 +278,7 @@ $(document).ready(function() {
     Card3D(card, ev)
   })
   card.addEventListener('mouseleave', (ev) => {
-    card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    card.style.transform = 'rotateX(0deg) rotateY(0deg) translate( -50%, -50% )';
     card.style.filter = 'brightness(1)';
   })
 })
@@ -326,7 +319,7 @@ function Card3D(card, ev) {
   let rotateX = map(mouseY, 0, 250, 25, -25);
   let brightness = map(mouseY, 0, 250, 1.5, 0.5);
   
-  img.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  img.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translate( -50%, -50% )`;
   img.style.filter = `brightness(${brightness})`;
 }
 
