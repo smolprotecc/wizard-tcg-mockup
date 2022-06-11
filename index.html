@@ -16,15 +16,20 @@
   body {
     background: rgba( 1, 1, 1, 0.88 );
   }
-  #drop-area {
+  #content {
     position: absolute;
     left    : 50%;
     top     : 50%;
+    transform: translate( -50%, -50% );
+  }
+  #drop-area {
+    position: absolute;
+    left    : 0%;
+    top     : 0%;
     height  : 590px;
     width   : 410px;
     border  : 15px solid rgba(1,1,1,1);
     border-radius: 15px;
-    transform: translate( -50%, -50% );
   }
   #drop-content {
     position: absolute;
@@ -230,6 +235,7 @@ textarea {
 }
 </style>
 
+<div id="content">
 <div id="drop-area">
   <div id="drop-content">
   <div id="header">
@@ -245,6 +251,8 @@ textarea {
   <div id="copyright">© 2021 Forgotten Runes Wizard's Cult</div>
   </div>
 </div>
+</div>
+
 <script>
 /* Default values: */
 let defaults = {
