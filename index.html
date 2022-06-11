@@ -270,6 +270,16 @@ $(document).ready(function() {
   $('#health-pool' ).attr('value', defaults.healthPool )
   $('#combat-score').attr('value', defaults.combatScore)
   $('#symbol-value').attr('value', defaults.symbolValue)
+  
+  // 3D hover
+  const card = document.querySelectorAll('#drop-area');
+  card.addEventListener('mousemove', (ev) => {
+    Card3D(card, ev)
+  })
+  card.addEventListener('mouseleave', (ev) => {
+    card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    card.style.filter = 'brightness(1)';
+  })
 })
   
 // Drag & Drop background picture, https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/
@@ -295,5 +305,22 @@ function processFile(file) {
     }
   }
 }
+
+function map(val, minA, maxA, minB, maxB) { return minB + ((val - minA) * (maxB - minB)) / (maxA - minA); }
+function Card3D(card, ev) {
+  let img = card;
+  let imgRect = card.getBoundingClientRect();
+  let width = imgRect.width;
+  let height = imgRect.height;
+  let mouseX = ev.offsetX;
+  let mouseY = ev.offsetY;
+  let rotateY = map(mouseX, 0, 180, -25, 25);
+  let rotateX = map(mouseY, 0, 250, 25, -25);
+  let brightness = map(mouseY, 0, 250, 1.5, 0.5);
+  
+  img.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  img.style.filter = `brightness(${brightness})`;
+}
+
   
 </script>
