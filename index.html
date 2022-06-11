@@ -271,8 +271,8 @@ $(document).ready(function() {
   $('#combat-score').attr('value', defaults.combatScore)
   $('#symbol-value').attr('value', defaults.symbolValue)
   
-  // 3D hover
-  const card = document.querySelectorAll('#drop-area');
+  // 3D hover: https://codepen.io/nelsonr/pen/WNQaZPb
+  const card = document.querySelector('#drop-area');
   card.addEventListener('mousemove', (ev) => {
     Card3D(card, ev)
   })
