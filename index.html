@@ -15,16 +15,19 @@
   
   body {
     background: rgba( 1, 1, 1, 0.88 );
+    display   : flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items    : center;
+    align-content  : center;
+    flex-wrap : wrap;
+    overflow-x: hidden;
   }
   #drop-area {
-    position: absolute;
-    left    : 50%;
-    top     : 50%;
     height  : 590px;
     width   : 410px;
     border  : 15px solid rgba(1,1,1,1);
     border-radius: 15px;
-    transform: translate( -50%, -50% );
   }
   #drop-content {
     position: absolute;
