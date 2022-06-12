@@ -24,7 +24,7 @@
     overflow-x: hidden;
   }
   #drop-area {
-    transform  : scale(1);
+    transform  : scale(0.7);
     perspective: 600px;
     position: relative;
     height  : 590px;
@@ -35,7 +35,7 @@
   }
   #drop-area:hover {
     z-index: 10;
-    transform: scale(1.3);
+    transform: scale(1);
   }
   #drop-content {
     position: absolute;
@@ -284,7 +284,6 @@ $(document).ready(function() {
   $('#symbol-value').attr('value', defaults.symbolValue)
   
   // 3D hover: https://codepen.io/nelsonr/pen/WNQaZPb
-  /*
   const card = document.querySelector('#drop-area');
   card.addEventListener('mousemove', (ev) => {
     Card3D(card, ev)
@@ -293,6 +292,7 @@ $(document).ready(function() {
     card.style.transform = 'rotateX(0deg) rotateY(0deg) translate( -50%, -50% )';
     card.style.filter = 'brightness(1)';
   })
+  /*
   */
 })
   
